@@ -22,6 +22,7 @@ using namespace std;
 int main() {
 	//Instantiate a CornerGrocer class
 	CornerGrocer grocer;
+	int selection;
 
 	//Read the input file (can have the user specify a file later)
 	grocer.ReadFile("inputFile.txt");
@@ -29,9 +30,22 @@ int main() {
 	//Write the items and frequency to file
 	grocer.WriteFile("frequency.dat");
 
-	//Draw menu and get selection from user
-	grocer.DrawMenu();
-	grocer.GetSelection();
+	do {
+		//Draw menu and get selection from user
+		grocer.DrawMenu();
+		selection = grocer.GetSelection();
+		
+		if (selection == 1) {
+			grocer.SearchMap();
+		}
+		else if (selection == 2) {
+			grocer.PrintList();
+		}
+		else if (selection == 3) {
+			grocer.PrintHistogram();
+		}
+
+	} while (selection != grocer.GetSentinel());
 	   
 	return 0;
 }

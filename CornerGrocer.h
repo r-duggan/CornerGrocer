@@ -24,16 +24,18 @@ using namespace std;
 class CornerGrocer {
 private:
 	map<string, int> grocerItems;
+	const int SENTINEL = 4;
 
 public:
 	//ACCESSORS//
 	map<string, int> GetGrocerList();
+	int GetSentinel();
 
 	//FUNCTIONS//
 	void DrawMenu();
 	int GetSelection();
-	void ValidateChoice(int);
-	string SearchMap(string);
+	int ValidateSelection();
+	string SearchMap();
 	void PrintList();
 	void PrintHistogram();
 	void ReadFile(string);

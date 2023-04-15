@@ -12,39 +12,103 @@
 
 #include "CornerGrocer.h"
 
+//ACCESSORS//
 map<string, int> CornerGrocer::GetGrocerList() {
 	return this->grocerItems;
 }
 
-//FUNCTIONS//
-void CornerGrocer::DrawMenu() {
-	cout << "****************************" << endl;
-	cout << "* 1. Search for an item    *" << endl;
-	cout << "* 2. Print All (numeric)   *" << endl;
-	cout << "* 3. Print All (histogram) *" << endl;
-	cout << "* 4. Exit                  *" << endl;
-	cout << "****************************" << endl;
+int CornerGrocer::GetSentinel() {
+	return this->SENTINEL;
 }
 
-int CornerGrocer::GetSelection() {
-	int selection;
+//FUNCTIONS//
+/*
+ Draws the menu items
+*/
+void CornerGrocer::DrawMenu() {
+	cout << "1. Search for an item" << endl;
+	cout << "2. Print All (numeric)" << endl;
+	cout << "3. Print All (histogram)" << endl;
+	cout << SENTINEL << ". Exit" << endl << endl;
+}
 
-	cout << "Enter selection ";
-	cin >> selection;
+/*
+ Loops until a valid choice is entered
+*/
+int CornerGrocer::GetSelection() {
+	int selection = 0;
+	bool needSelection = true;
+
+	do {
+		cout << "Enter selection ";
+		selection = ValidateSelection();
+		needSelection = ((selection < 1) || (selection > SENTINEL));
+		if (needSelection) {
+			cout << "Invalid choice -- Please select from 1 to " << SENTINEL << endl;
+		}
+		cout << endl;
+	} while (needSelection);
 
 	return selection;
 }
 
-void CornerGrocer::ValidateChoice(int choice) {
+/*
+  Validates the GetSelections input
+ */
+int CornerGrocer::ValidateSelection() {
+	int selection;
 
+	do {
+		cin >> selection;
+
+		//Check if cin type doesn't match 
+		if (cin.fail()) {
+			//Prevent infinite loop
+			cin.clear();
+			cin.ignore(100, '\n');
+			//Inform user of error and action
+			cout << "You must type in an integer ";
+			continue;
+		}
+		else {
+			if (selection <= 0) {
+				//Inform user of error and action
+				cout << "Invalid choice -- Please select from 1 to " << SENTINEL << " ";
+				continue;
+			}
+		}
+	} while (selection <= 0);
+
+	return selection;
 }
 
+/*
+ Prints out the items in the map in a numerical
+ format
+ */
 void CornerGrocer::PrintList() {
-
+	for (auto item : this->grocerItems) {
+		cout << item.first << " " << item.second << endl;
+	}
+	cout << endl;
 }
 
+/*
+ Prints out the items in the map in a histogram
+ format
+ */
 void CornerGrocer::PrintHistogram() {
+	//Eventually fills with * for histogram
+	string count = "";
 
+	for (auto item : this->grocerItems) {
+		//fill count with the number of '*' from map at item
+		count.insert(0, item.second, '*');
+		cout << item.first << " " << count << endl;
+		count = "";
+	}
+
+	cout << endl;
 }
 
 /*
@@ -96,6 +160,11 @@ void CornerGrocer::ReadFile(string filename) {
 	reader.close();
 }
 
+/*
+ Writes to the passed filename from the grocerItems map
+
+ @param filename - pass a file for the writer to write to.
+ */
 void CornerGrocer::WriteFile(string filename) {
 	//Use writer to write to file
 	ofstream writer;
