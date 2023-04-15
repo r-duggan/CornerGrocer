@@ -1,3 +1,16 @@
+/*
+ * Name: Robert Duggan
+ * Date: 04/14/2023
+ * 
+ * main.cpp - Main
+ * Instantiates a CornerGrocer object and dictates how the program will actually
+ * function. 
+ *		* Read a file
+ *		* Write a file (back-up)
+ *		* Allow user to interact with the data
+ *			* Search for item
+ *			* Print all and how many occurances
+ */
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -17,30 +30,6 @@ int main() {
 
 	string inFilename = "inputFile.txt";
 	string outFilename = "frequency.dat";
-
-	cout << "Opening " << inFilename << endl;
-
-	reader.open(inFilename);
-
-	if (!reader.is_open()) {
-		cout << "Failed to open " << inFilename << endl;
-		return 1;
-	}
-
-	reader >> item;
-
-	grocerItems.emplace(item, 1);
-
-	while (!reader.fail()) {
-		reader >> item;
-
-		if (!grocerItems.count(item)) {
-			grocerItems.emplace(item, 1);
-		}
-		else {
-			grocerItems.at(item) += 1;
-		}
-	}
 
 	writer.open(outFilename);
 
