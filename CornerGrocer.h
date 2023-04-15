@@ -26,6 +26,9 @@ private:
 	map<string, int> grocerItems;
 
 public:
+	//ACCESSORS//
+	map<string, int> GetGrocerList();
+
 	//FUNCTIONS//
 	void DrawMenu();
 	int GetSelection();

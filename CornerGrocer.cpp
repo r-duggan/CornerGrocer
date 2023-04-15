@@ -12,6 +12,10 @@
 
 #include "CornerGrocer.h"
 
+map<string, int> CornerGrocer::GetGrocerList() {
+	return this->grocerItems;
+}
+
 //FUNCTIONS//
 void CornerGrocer::DrawMenu() {
 	cout << "****************************" << endl;
@@ -86,8 +90,35 @@ void CornerGrocer::ReadFile(string filename) {
 			this->grocerItems.at(item) += 1;
 		}
 	}
+
+	//Close the reader
+	cout << "Closing " << filename << endl << endl;
+	reader.close();
 }
 
 void CornerGrocer::WriteFile(string filename) {
+	//Use writer to write to file
+	ofstream writer;
 
+	//Open the file
+	cout << "Trying to open/create " << filename << endl;
+	writer.open(filename);
+
+	//Failed to open so exit
+	if (!writer.is_open()) {
+		cout << "Failed to open/create " << filename << endl;
+		return;
+	}
+	else {
+		cout << filename << " opened" << endl;
+	}
+
+	//Write the item and frequency to file
+	for (auto grocery : this->grocerItems) {
+		writer << grocery.first << " " << grocery.second << endl;
+	}
+
+	//Close the writer
+	cout << "Closing " << filename << endl << endl;
+	writer.close();
 }

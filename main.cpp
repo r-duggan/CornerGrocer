@@ -20,32 +20,18 @@
 using namespace std;
 
 int main() {
+	//Instantiate a CornerGrocer class
 	CornerGrocer grocer;
-	map<string, int> grocerItems;
 
-	string item;
+	//Read the input file (can have the user specify a file later)
+	grocer.ReadFile("inputFile.txt");
 
-	
-	ofstream writer;
+	//Write the items and frequency to file
+	grocer.WriteFile("frequency.dat");
 
-	string inFilename = "inputFile.txt";
-	string outFilename = "frequency.dat";
-
-	writer.open(outFilename);
-
-	if (!writer.is_open()) {
-		cout << "Couldn't open " << outFilename << endl;
-	}
-
-	for (auto grocery : grocerItems) {
-		writer << grocery.first << " " << grocery.second << endl;
-	}
-
-	reader.close();
-	writer.close();
-
+	//Draw menu and get selection from user
 	grocer.DrawMenu();
 	grocer.GetSelection();
-
+	   
 	return 0;
 }
