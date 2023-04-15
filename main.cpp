@@ -12,7 +12,7 @@ int main() {
 
 	string item;
 
-	ifstream reader;
+	
 	ofstream writer;
 
 	string inFilename = "inputFile.txt";

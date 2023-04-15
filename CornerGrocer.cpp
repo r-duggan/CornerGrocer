@@ -1,3 +1,15 @@
+/*
+ * Name: Robert Duggan
+ * Date: 04/14/2023
+ * 
+ * CornerGrocer.cpp - Header file for CornerGrocer class (Definitions)
+ * The CornerGrocer class reads a file of grocery items and counts
+ * the number of occurances of all the items. It will allow the user
+ * to search through the list and report the count for a specific item
+ * or list every item in the database with its occurances either as a 
+ * numerical value or as a histogram.
+ */
+
 #include "CornerGrocer.h"
 
 //FUNCTIONS//
@@ -32,7 +44,8 @@ void CornerGrocer::PrintHistogram() {
 }
 
 void CornerGrocer::ReadFile(string filename) {
-
+	//Create a reader t
+	ifstream reader;
 }
 
 void CornerGrocer::WriteFile(string filename) {
