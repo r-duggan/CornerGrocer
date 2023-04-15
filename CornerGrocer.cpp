@@ -26,9 +26,9 @@ int CornerGrocer::GetSentinel() {
  Draws the menu items
 */
 void CornerGrocer::DrawMenu() {
-	cout << "1. Search for an item" << endl;
-	cout << "2. Print All (numeric)" << endl;
-	cout << "3. Print All (histogram)" << endl;
+	cout << "1. Search for an Item's Sales" << endl;
+	cout << "2. Print All Sales (numeric)" << endl;
+	cout << "3. Print All Sales (histogram)" << endl;
 	cout << SENTINEL << ". Exit" << endl << endl;
 }
 
@@ -83,6 +83,29 @@ int CornerGrocer::ValidateSelection() {
 }
 
 /*
+ Allow user to search list and return occurances
+*/
+void CornerGrocer::SearchMap() {
+	//Temp location to store the item they wish to find
+	string searchTerm;
+
+	//Prompt user for a search term
+	cout << "Please type item you wish to find (case sensitive) ";
+	cin >> searchTerm;
+	cout << endl;
+
+	//Check if search term is in the map
+	if (grocerItems.count(searchTerm)) {
+		cout << "We sold " << grocerItems.at(searchTerm) << " " << searchTerm << endl;
+	}
+	else {
+		cout << searchTerm << " not found" << endl;
+	}
+
+	cout << endl;
+}
+
+/*
  Prints out the items in the map in a numerical
  format
  */
@@ -125,7 +148,7 @@ void CornerGrocer::ReadFile(string filename) {
 	string item;
 
 	//Open the file
-	cout << "Trying to open " << filename << endl;
+	//cout << "Trying to open " << filename << endl;
 	reader.open(filename);
 
 	if (!reader.is_open()) {
@@ -133,7 +156,7 @@ void CornerGrocer::ReadFile(string filename) {
 		return;
 	}
 	else {
-		cout << filename << " opened" << endl;
+		//cout << filename << " opened" << endl;
 	}
 
 	//Move the first item from the file in
@@ -156,7 +179,7 @@ void CornerGrocer::ReadFile(string filename) {
 	}
 
 	//Close the reader
-	cout << "Closing " << filename << endl << endl;
+	//cout << "Closing " << filename << endl << endl;
 	reader.close();
 }
 
@@ -170,7 +193,7 @@ void CornerGrocer::WriteFile(string filename) {
 	ofstream writer;
 
 	//Open the file
-	cout << "Trying to open/create " << filename << endl;
+	//cout << "Trying to open/create " << filename << endl;
 	writer.open(filename);
 
 	//Failed to open so exit
@@ -179,7 +202,7 @@ void CornerGrocer::WriteFile(string filename) {
 		return;
 	}
 	else {
-		cout << filename << " opened" << endl;
+		//cout << filename << " opened" << endl;
 	}
 
 	//Write the item and frequency to file
@@ -188,6 +211,6 @@ void CornerGrocer::WriteFile(string filename) {
 	}
 
 	//Close the writer
-	cout << "Closing " << filename << endl << endl;
+	//cout << "Closing " << filename << endl << endl;
 	writer.close();
 }

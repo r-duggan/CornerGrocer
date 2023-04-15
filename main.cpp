@@ -30,6 +30,9 @@ int main() {
 	//Write the items and frequency to file
 	grocer.WriteFile("frequency.dat");
 
+	cout << "Welcome to Corner Grocer's Database!" << endl;
+	cout << "Please select from the menu items below" << endl << endl;
+
 	do {
 		//Draw menu and get selection from user
 		grocer.DrawMenu();

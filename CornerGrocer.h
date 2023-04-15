@@ -35,7 +35,7 @@ public:
 	void DrawMenu();
 	int GetSelection();
 	int ValidateSelection();
-	string SearchMap();
+	void SearchMap();
 	void PrintList();
 	void PrintHistogram();
 	void ReadFile(string);
