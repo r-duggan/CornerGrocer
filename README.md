@@ -20,5 +20,6 @@
   Overall, I felt this method to be very effective and I will be using it everywhere now.
 <br><br>
 <b>How did you make this program maintainable, readable, and adaptable? </b><br>
-  I documented it well, choose descriptive variable and function names. I also organized it in a way that felt logical to me. I also started something new with commenting where I give a 1 - 2 word description in all caps to highlight different areas of the code. 
+  I documented it well, choose descriptive variable and function names. I also organized it in a way that felt logical to me. I also started something new with commenting where I give a 1 - 2 word description in all caps to highlight different areas of the code. Like //ACCESSORS// or //FUNCTIONS//. 
+  I feel this had a great effect on dividing the code visually and making it much easier to identify sections that share ideas. 
 <br><br>
